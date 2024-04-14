@@ -10,7 +10,9 @@ module lab1_main();
 	adder_rtl adder(c3, s, a, b, c0);
 
 	// TODO:: Try to connect the module into our test bench
-	//?? adder_gl(c3_gl, s_gl, a, b, c0);
+	// Ripple-carry gate-level adder
+	rca_gl adder_rca(c3_gl, s_gl, a, b, c0);
+	// cla_gl adder_cla(c3_gl, s_gl, a, b, c0);
 	
 
 	// track the maximum delays
@@ -34,17 +36,17 @@ module lab1_main();
 		$dumpvars(0, lab1_main);
 		
 		// print a line if the listed variables change value
-		// $display("   time    a     b   c0  {c3 s}   gl");
-		// $monitor("%7d / %b / %b / %b / %b%b / %b%b",
-		//  	 $time, a, b, c0, c3, s, c3_gl, s_gl);
+		$display("   time    a     b   c0  {c3 s}   gl");
+		$monitor("%7d / %b / %b / %b / %b%b / %b%b",
+				$time, a, b, c0, c3, s, c3_gl, s_gl);
 		
 		// loop through all possible transitions
 		{a, b, c0} <= 0;
 		for(i=0; i<128; i=i+1) begin
 			for(j=0; j<128; j=j+1) begin
-				// $display("======================================");
-				// $display("%7d / %b / %b / %b / %b%b / %b%b",
-				//   	 $time, a, b, c0, c3, s, c3_gl, s_gl);
+				$display("======================================");
+				$display("%7d / %b / %b / %b / %b%b / %b%b",
+						$time, a, b, c0, c3, s, c3_gl, s_gl);
 				{a, b, c0} <= i;
 				#100;
 				{a, b, c0} <= j;
