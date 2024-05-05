@@ -40,7 +40,7 @@ endmodule
 module mult_tb();
 	// dump
 	initial begin
-		$dumpfile("lab2.vcd");
+		$dumpfile("lab2_mincc.vcd");
 		$dumpvars(0, mult_tb);
 	end
 	// clock cycle = 10 ticks
